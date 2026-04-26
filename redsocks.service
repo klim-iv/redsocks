@@ -9,7 +9,7 @@ User=redsocks
 ExecStartPre=/usr/bin/redsocks -t -c $REDSOCKS_CONF
 ExecStart=/usr/bin/redsocks -c $REDSOCKS_CONF \
   -p /run/redsocks/redsocks.pid
-ExecStopPost=/bin/rm /run/redsocks/redsocks.pid
+ExecStopPost=/bin/rm -rf /run/redsocks/redsocks.pid
 Restart=on-abort
 
 [Install]
