@@ -170,7 +170,10 @@ int red_socket_server(int type, struct sockaddr_in *bindaddr)
 
 	error = bind(fd, (struct sockaddr*)bindaddr, sizeof(*bindaddr));
 	if (error) {
-		log_errno(LOG_ERR, "bind");
+		char str[INET_ADDRSTRLEN];
+		inet_ntop(AF_INET, &bindaddr->sin_addr, str, sizeof(str));
+		log_errno(LOG_ERR, "bind IP = %s", str);
+
 		goto fail;
 	}
 
